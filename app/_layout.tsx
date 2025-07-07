@@ -10,7 +10,7 @@ export default function RootLayout() {
   const colorScheme = useColorScheme();
 
   const [loaded] = useFonts({
-    // SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'), // Comentado para evitar erro se o arquivo não existir
+    // SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 
   if (!loaded) {
@@ -20,8 +20,18 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
       <Stack>
+        {/* Rota das abas principais */}
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
+        
+        {/* Rotas da pasta Prestador */}
+        <Stack.Screen name="Prestador/Agenda" options={{ title: 'Agenda' }} />
+        <Stack.Screen name="Prestador/CadastraServico" options={{ title: 'Cadastrar Serviço' }} />
+        <Stack.Screen name="Prestador/ServicoSalvo" options={{ title: 'Serviço Salvo' }} />
+        <Stack.Screen name="Prestador/Reagendar" options={{ title: 'Reagendar' }} />
+        <Stack.Screen name="Prestador/PainelFornecedor" options={{ title: 'Painel Fornecedor' }} />
+
+        {/* Página para rotas não encontradas */}
+        <Stack.Screen name="+not-found" options={{ title: 'Página não encontrada' }} />
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>
